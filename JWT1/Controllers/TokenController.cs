@@ -21,7 +21,7 @@ namespace JWT.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult CreateToken([FromBody]LoginModel login)
+        public IActionResult Post([FromBody]LoginModel login)
         {
             IActionResult response = Unauthorized();
             var user = Authenticate(login);
