@@ -47,7 +47,7 @@ namespace JWT
             }
 
             app.UseAuthentication();
-
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }

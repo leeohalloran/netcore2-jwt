@@ -21,10 +21,10 @@ namespace JWT.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Post([FromBody]LoginModel login)
+        public IActionResult Post(string username, string password, string clienttype)
         {
             IActionResult response = Unauthorized();
-            var user = Authenticate(login);
+            var user = Authenticate(username, password);
 
             if (user != null)
             {
@@ -57,16 +57,17 @@ namespace JWT.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private UserModel Authenticate(LoginModel login)
+        private UserModel Authenticate(string username, string password)
         {
             UserModel user = null;
 
-            if (login.Username == "mario" && login.Password == "secret")
+
+            if (username == "mario" && password == "secret")
             {
                 user = new UserModel { Name = "Mario Rossi", Email = "mario.rossi@domain.com", Birthdate = new DateTime(1983, 9, 23)};
             }
 
-            if (login.Username == "mary" && login.Password == "barbie")
+            if (username == "mary" && password == "barbie")
             {
                 user = new UserModel { Name = "Mary Smith", Email = "mary.smith@domain.com", Birthdate = new DateTime(2001, 5, 13) };
             }
